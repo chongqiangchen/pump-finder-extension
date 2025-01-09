@@ -12,7 +12,7 @@ function App() {
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Pump Finder</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-2">
           <div>
             有问题可以联系 <a href="https://x.com/_daxiongya" target="_blank" className="text-blue-500 hover:underline">@_daxiongya</a>
           </div>
