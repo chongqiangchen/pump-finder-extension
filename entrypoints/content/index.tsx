@@ -4,7 +4,7 @@ import App from "./App.tsx";
 
 // https://www.chrismytton.com/plain-text-websites/
 export default defineContentScript({
-  matches: ["*://*/*"],
+  matches: ["*://*.x.com/*", "*://*.twitter.com/*"],
   main(ctx) {
     const ui = createIntegratedUi(ctx, {
       position: "inline",
@@ -18,6 +18,9 @@ export default defineContentScript({
         container.style.height = "0";
         container.style.overflow = "visible";
         container.style.zIndex = "9999999";
+
+        // 添加命名空间类名
+        container.className = "pump-finder-extension";
 
         const root = ReactDOM.createRoot(container);
         root.render(<App />);

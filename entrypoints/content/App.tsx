@@ -47,6 +47,7 @@ const App: React.FC = () => {
       setLoading(true);
       const data = await fuzzySearch(selectedText);
       const fuzzyInfo = data.data;
+      console.log("fuzzyInfo: ", fuzzyInfo);
 
       if (!fuzzyInfo) {
         return;

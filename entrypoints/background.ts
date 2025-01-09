@@ -74,18 +74,18 @@ async function fuzzySearch(keyword: string) {
   const cacheKey = `fuzzy:${keyword}`
   const cachedResult = cache.get(cacheKey)
   if (cachedResult && Date.now() - cachedResult.timestamp < CACHE_DURATION) {
+    console.log("fuzzySearch cachedResult:", cachedResult);
     return cachedResult.data
   }
 
   try {
-    const response = await fetch("https://frontend-api-v2.pump.fun/coins/search?offset=0&limit=10&sort=market_cap&order=DESC&includeNsfw=false&searchTerm=" + keyword, {
+    const response = await ofetch("https://frontend-api-v2.pump.fun/coins/search?offset=0&limit=10&sort=market_cap&order=DESC&includeNsfw=false&searchTerm=" + keyword, {
       "method": "GET"
     });
     console.log("fuzzySearch response:", response);
-    const data = await response.json()
     // 存储到缓存
-    cache.set(cacheKey, { data, timestamp: Date.now() })
-    return data
+    cache.set(cacheKey, { data: response, timestamp: Date.now() })
+    return response
   } catch (error: any) {
     throw new Error(`搜索失败: ${error.message}`);
   }
@@ -99,16 +99,19 @@ async function advancedSearch(tokenAddress: string) {
     return cachedResult.data
   }
 
-  const url = `https://advanced-api-v2.pump.fun/coins/metadata-and-trades/${tokenAddress}`
-  const response = await fetch(url, {
-    "method": "GET"
-  });
-  console.log("pumpSearch response:", response);
-  const data = await response.json()
-  
-  // 存储到缓存
-  cache.set(cacheKey, { data, timestamp: Date.now() })
-  return data
+  try {
+    const url = `https://advanced-api-v2.pump.fun/coins/metadata-and-trades/${tokenAddress}`
+    const response = await ofetch(url, {
+      "method": "GET"
+    });
+    console.log("pumpSearch response:", response);
+
+    // 存储到缓存
+    cache.set(cacheKey, { data: response, timestamp: Date.now() })
+    return response
+  } catch (error: any) {
+    throw new Error(`搜索失败: ${error.message}`);
+  }
 }
 
 async function dexSearch(tokenAddress: string) {
@@ -119,14 +122,16 @@ async function dexSearch(tokenAddress: string) {
     return cachedResult.data
   }
 
-  const url = `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`
-  const response = await fetch(url, {
-    "method": "GET"
-  });
-  console.log("dexSearch response:", response);
-  const data = await response.json()
-  
-  // 存储到缓存
-  cache.set(cacheKey, { data, timestamp: Date.now() })
-  return data
+  try {
+    const url = `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`
+    const response = await ofetch(url, {
+      "method": "GET"
+    });
+    console.log("dexSearch response:", response);
+    // 存储到缓存
+    cache.set(cacheKey, { data: response, timestamp: Date.now() })
+    return response
+  } catch (error: any) {
+    throw new Error(`搜索失败: ${error.message}`);
+  }
 }
