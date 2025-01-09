@@ -7,6 +7,6 @@ export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
     permissions: ["storage", "activeTab"],
-    host_permissions: ["https://*/*", "http://*/*"],
-  },
+    host_permissions: ["*://*.x.com/*", "*://*.twitter.com/*"],
+  }
 });
