@@ -1,9 +1,7 @@
 name: Build & Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,15 +28,15 @@ jobs:
         
       - name: Create ZIP file
         run: |
-          cd dist
-          zip -r ../pump-finder-extension.zip *
-          cd ..
+          cd dist/chrome-mv3
+          zip -r ../../pump-finder.zip *
+          cd ../..
           
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: pump-finder-extension.zip
+          files: pump-finder.zip
           draft: false
           prerelease: false
         env:
