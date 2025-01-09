@@ -2,6 +2,11 @@ name: Build & Release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号 (例如: v1.0.0)'
+        required: true
+        type: string
 
 jobs:
   build:
@@ -9,6 +14,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Create Tag
+        run: |
+          git tag ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,6 +46,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.event.inputs.version }}
           files: pump-finder.zip
           draft: false
           prerelease: false
