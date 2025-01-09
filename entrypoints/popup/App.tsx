@@ -16,6 +16,9 @@ function App() {
           <div>
             有问题可以联系 <a href="https://x.com/_daxiongya" target="_blank" className="text-blue-500 hover:underline">@_daxiongya</a>
           </div>
+          <div>
+            ☕️ Solana 捐赠地址：FYyUWw1cZqM5VZjQ3LtQKc4Wym7vYWb7ChPCqEPv6e3R
+          </div>
         </CardContent>
       </Card>
     </div>
