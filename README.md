@@ -1,18 +1,13 @@
-# Text Polish - A Chrome Extension 🤖
+# Pump Finder - A Chrome Extension 🤖
 
-A Chrome extension built with WXT and shadcn/ui that helps you polish text with AI capabilities. Simply select any text on a webpage to translate, explain, or copy it with a sleek floating menu.
+一个基于 WXT 和 shadcn/ui 构建的 Chrome 扩展，帮助你在 Twitter 上快速检索相关pump代币。
 
-## ✨ Features
+## ✨ 功能
 
-- 🔍 Smart text selection detection
-- 🌐 One-click translation to multiple languages
-- 📚 AI-powered text explanation
-- 📋 Quick copy functionality
-- 🎯 Floating UI that follows your selection
-- ⚡ Fast and responsive interactions
-- 🔒 Secure API key management
+- 🔍 自动识别 pump 地址，给出 GMGN 购买入口
+- 🔍 手动搜索关键词，给出 pump 相关代币
 
-## 🛠️ Tech Stack
+## 🛠️ 技术栈
 
 - **Framework**: React + TypeScript
 - **Extension Framework**: WXT (WebExtension Tools)
@@ -22,7 +17,7 @@ A Chrome extension built with WXT and shadcn/ui that helps you polish text with 
 - **State Management**: React Hooks
 - **API Integration**: OpenAI/Claude API
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
 1. Clone the repository: `git clone https://github.com/hellokaton/text-polish-chrome-extension.git`
 2. Install dependencies:
@@ -37,39 +32,4 @@ pnpm install
 pnpm dev
 ```
 
-This will automatically:
-
-- Start the development server
-- Open Chrome with the extension loaded
-- Enable hot reload for development
-
-The extension will be automatically reloaded when you make changes to the code.
-
-## 📸 Screenshots
-
-<img src="screenshots/Snipaste_1.jpg" width="500px" />
-<img src="screenshots/Snipaste_2.jpg" width="500px" />
-<img src="screenshots/Snipaste_3.jpg" width="500px" />
-
-## 🔧 Configuration
-
-The extension can be configured through the popup settings panel:
-
-- API endpoint configuration
-- API key management
-- Model selection
-- Target language preference
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with [WXT](https://wxt.dev)
-- UI components from [shadcn/ui](https://ui.shadcn.com)
-- Icons from [Lucide](https://lucide.dev)
+## 安装
