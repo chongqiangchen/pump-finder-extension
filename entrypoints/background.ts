@@ -79,7 +79,7 @@ async function fuzzySearch(keyword: string) {
   }
 
   try {
-    const response = await ofetch("https://frontend-api-v2.pump.fun/coins/search?offset=0&limit=10&sort=market_cap&order=DESC&includeNsfw=false&searchTerm=" + keyword, {
+    const response = await ofetch("https://api.citometa.com/fuzzy-search?keyword=" + keyword, {
       "method": "GET"
     });
     console.log("fuzzySearch response:", response);
@@ -100,9 +100,9 @@ async function advancedSearch(tokenAddress: string) {
   }
 
   try {
-    const url = `https://advanced-api-v2.pump.fun/coins/metadata-and-trades/${tokenAddress}`
+    const url = `https://api.citometa.com/advanced-search?tokenAddress=${tokenAddress}`
     const response = await ofetch(url, {
-      "method": "GET"
+      method: "GET"
     });
     console.log("pumpSearch response:", response);
 
@@ -125,7 +125,7 @@ async function dexSearch(tokenAddress: string) {
   try {
     const url = `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`
     const response = await ofetch(url, {
-      "method": "GET"
+      method: "GET"
     });
     console.log("dexSearch response:", response);
     // 存储到缓存
