@@ -4,7 +4,12 @@ import App from "./App.tsx";
 
 // https://www.chrismytton.com/plain-text-websites/
 export default defineContentScript({
-  matches: ["*://*.x.com/*", "*://*.twitter.com/*"],
+  matches: [
+    "*://*.x.com/*",
+    "*://*.twitter.com/*",
+    "*://*.instagram.com/*",
+    "*://*.discord.com/*",
+  ],
   main(ctx) {
     const ui = createIntegratedUi(ctx, {
       position: "inline",
