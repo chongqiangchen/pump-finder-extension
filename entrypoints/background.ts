@@ -1,7 +1,16 @@
 import { APIRequest } from "~/types";
 import { ofetch } from "ofetch";
 
+enum MessageType {
+  clickExtIcon = "clickExtIcon",
+  changeTheme = "changeTheme",
+  changeLocale = "changeLocale"
+}
+
 export default defineBackground(() => {
+  // @ts-ignore
+  browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: true }).catch((error: any) => console.error(error));
+
   // 处理来自 popup 和 content script 的消息
   browser.runtime.onMessage.addListener(
     (request: APIRequest, sender, sendResponse) => {
@@ -20,6 +29,10 @@ export default defineBackground(() => {
             case "dexSearch":
               response = await dexSearch(request.text!);
               console.log("dexSearch response:", response);
+              break;
+            case "pumpListener":
+              response = await pumpListener(request.includeScreenNames, request.excludeScreenNames);
+              console.log("pumpListener response:", response);
               break;
             default: {
               throw new Error("Unknown request type: " + request.type);
@@ -133,5 +146,26 @@ async function dexSearch(tokenAddress: string) {
     return response
   } catch (error: any) {
     throw new Error(`搜索失败: ${error.message}`);
+  }
+}
+
+async function pumpListener(includeScreenNames?: string, excludeScreenNames?: string) {
+  try {
+    let url = `https://api.citobuzz.com/api/v1/pump/list?page=1&pageSize=100`;
+    
+    // 添加筛选参数
+    if (includeScreenNames) {
+      url += `&includeScreenNames=${encodeURIComponent(includeScreenNames)}`;
+    }
+    if (excludeScreenNames) {
+      url += `&excludeScreenNames=${encodeURIComponent(excludeScreenNames)}`;
+    }
+
+    const response = await ofetch(url, {
+      method: "GET"
+    });
+    return response;
+  } catch (error: any) {
+    throw new Error(`获取数据失败: ${error.message}`);
   }
 }

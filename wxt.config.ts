@@ -6,7 +6,8 @@ export default defineConfig({
   extensionApi: "chrome",
   modules: ["@wxt-dev/module-react"],
   manifest: {
-    permissions: ["storage", "activeTab"],
-    host_permissions: ["*://*.x.com/*", "*://*.twitter.com/*"],
+    permissions: ["storage", "activeTab", "sidePanel"],
+    action: {},
+    host_permissions: ["*://*.x.com/*", "*://*.twitter.com/*"]
   }
 });

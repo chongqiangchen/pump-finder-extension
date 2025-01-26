@@ -127,7 +127,8 @@ export interface Position {
 export type ResultType =
   | "fuzzySearch"
   | "dexSearch"
-  | "advancedSearch";
+  | "advancedSearch"
+  | "pumpListener";
 
 export interface ResultState {
   type: ResultType;
@@ -145,6 +146,8 @@ export interface APIRequest {
   };
   text?: string;
   targetLang?: string;
+  includeScreenNames?: string;
+  excludeScreenNames?: string;
 }
 
 export interface APIResponse<T> {
